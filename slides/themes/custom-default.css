@@ -12,7 +12,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
-} 
+}
 img[alt~="center"] {
   display: block;
   margin: 0 auto;
@@ -22,9 +22,9 @@ img[alt~="center"] {
 .fa-linkedin { color: blue; }
 .fa-window-maximize { color: skyblue; }
 
-svg[id^="mermaid-"] { 
-  max-width: 960px; 
-  max-height: 600px; 
+svg[id^="mermaid-"] {
+  max-width: 960px;
+  max-height: 600px;
 }
 
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'

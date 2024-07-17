@@ -1,26 +1,20 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
+
 	"name": "Debian",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
+	"build": {
+      "dockerfile": "Dockerfile"
+    },
+    "containerEnv": {
+      "HOME": "/home/vscode"
+    },
 	"features": {
 		// uncomment this to allow pptx or pdf export
-		// "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
-		// 	"packages": "chromium"
-		// }
+		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+		"packages": "chromium"
+		 }
 	},
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
-	"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
-	
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
@@ -37,10 +31,16 @@
 				"streetsidesoftware.code-spell-checker",
 				"yzhang.markdown-all-in-one",
 				"marp-team.marp-vscode",
-				"bierner.markdown-mermaid"
+				"bierner.markdown-mermaid",
+				"github.vscode-pull-request-github",
+				"github-actions.github-actions",
+				"oderwat.indent-rainbow"
 			]
-		}
+		},
+		"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && git config --global --add credential.useHttpPath true",
+		"workspaceFolder": "/home/vscode/workspace",
+		"workspaceMount": "source=${localWorkspaceFolder},target=/home/vscode/workspace,type=bind"
+	  }
 	}
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
-}
