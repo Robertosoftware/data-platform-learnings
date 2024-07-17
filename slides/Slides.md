@@ -1,10 +1,11 @@
 ---
 marp: true
-theme: custom-default
-footer: 'https://example.com'
+theme: custom-gaia
+class: lead
+# footer: 'https://example.com'
 ---
 
-# My Presentation
+# Data Platform Learnings
 ![bg right](https://picsum.photos/800/600)
 
 ---

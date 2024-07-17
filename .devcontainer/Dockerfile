@@ -28,4 +28,3 @@ RUN sudo apt install vim -y &&\
 RUN usermod -aG sudo vscode
 
 RUN chmod -R 777 /home/vscode
-
