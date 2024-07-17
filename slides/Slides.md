@@ -1,16 +1,54 @@
 ---
 marp: true
-theme: custom-gaia
-class: lead
+theme: gaia
+class:
+  - lead
+  - invert
 # footer: 'https://example.com'
 ---
+<!-- class: lead  -->
 
 # Data Platform Learnings
 ![bg right](https://picsum.photos/800/600)
 
 ---
+<!-- class: invert-->
 
+# Invert
+
+---
+<!-- class: lead-->
+
+# Lead
+
+---
+<!-- class: gaia-->
+
+# gaia
+
+---
+<!-- class: lead invert -->
+
+# Lead + invert
+
+---
+
+<!-- class: lead gaia -->
+
+# Lead + gaia
+
+
+---
+
+<!-- class: invert gaia -->
+
+# Invert + gaia
+
+
+---
 <!-- Speaker Notes -->
+<!-- class: lead -->
+
 ## Slide 1
 
 - Item 1
