@@ -13,7 +13,7 @@
 		// uncomment this to allow pptx or pdf export
 		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
 		"packages": "chromium"
-		 }
+		}
 	},
 	// Configure tool-specific properties.
 	"customizations": {

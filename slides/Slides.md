@@ -8,7 +8,7 @@ class:
 ---
 <!-- class: lead  -->
 
-# Data Platform Learnings
+# Learnings of a New Data Platform
 ![bg right](https://picsum.photos/800/600)
 
 ---
@@ -49,26 +49,28 @@ class:
 <!-- Speaker Notes -->
 <!-- class: lead -->
 
-## Slide 1
+## AGENDA
 
-- Item 1
-- Item 2
-- Item 3
+1. What is the New Data Platform?
+1. Past
+1. Present
+1. Future
 <!-- Can have multiple on a slide -->
 
 ---
 
-## Slide 2
+## What is the New Data Platform?
 <!-- Can also do a multiline
 comment that will show in notes -->
+C4 Architecture
 
 ![Image](https://picsum.photos/800/600)
 
 ---
 
-## Slide 3
+## Past
 
-> This is a quote.
+> We have a d
 
 ---
 
