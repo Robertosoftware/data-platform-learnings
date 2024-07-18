@@ -59,12 +59,14 @@ class:
 
 ---
 
+<!-- class: lead -->
+
 ## What is the New Data Platform?
 <!-- Can also do a multiline
 comment that will show in notes -->
 C4 Architecture
 
-![Image](https://picsum.photos/800/600)
+![Image](https://picsum.photos/600/400)
 
 ---
 
