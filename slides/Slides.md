@@ -202,4 +202,12 @@ comment that will show in notes -->
 
 ![Image](https://picsum.photos/600/400)
 
+---
 
+<!-- _class: lead invert -->
+<!-- _backgroundColor:  #9CB080 -->
+<!-- _footer: Data Team @ TBAuctions -->
+
+# Questions and Feedback
+
+![bg right](https://picsum.photos/1000/1000)
