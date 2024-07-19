@@ -5,6 +5,16 @@ class:
   - lead
   - invert
 paginate: true
+transition: slide-up
+style: |
+  @keyframes marp-outgoing-transition-slide-up {
+    from { transform: translateY(0%); }
+    to { transform: translateY(-100%); }
+  }
+  @keyframes marp-incoming-transition-slide-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0%); }
+  }
 # footer: 'https://example.com' #9CB080
 ---
 <!-- _class: lead invert -->
@@ -141,18 +151,15 @@ At heart, the [data platform](https://www.notion.so/tbauctions/Data-Platform-Arc
 
 ---
 
-
-
 <!-- class: default -->
-
 ## Monorepo vs Multi Repo
-
 <!-- Can also do a multiline
 comment that will show in notes -->
 <p align="center" >
-  <img width="600" height="460" src="image.png" />
+  <img width="600" height="400" src="image.png" />
 </p>
-Keep it simple
+
+*Keep it simple!*
 
 ---
 
