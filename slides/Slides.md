@@ -4,22 +4,47 @@ theme: gaia
 class:
   - lead
   - invert
-# footer: 'https://example.com'
+footer: Data Team TBAuctions
+# footer: 'https://example.com' #9CB080
 ---
-<!-- class: lead  -->
-
+<!-- class: lead invert -->
+<!-- _backgroundColor:  #9CB080 -->
 # Learnings of a New Data Platform
-![bg right](https://picsum.photos/800/600)
+July 2024
+![bg right](./img/tbauctions-logo.png)
 
 ---
-<!-- class: invert-->
 
-# Invert
+<!-- _class: invert -->
+<!-- _backgroundColor: #260F1C -->
+
+# Agenda
+
+
+1. What is the New Data Platform?
+1. Way of working
+1. How is the CI/CD?
+1. Terraform learnings 
+1. Next steps
+
 
 ---
-<!-- class: lead-->
 
-# Lead
+<!-- class: lead -->
+
+## What is the New Data Platform?
+<!-- Can also do a multiline
+comment that will show in notes -->
+![width:600 height:400](./img/data-platform-system_context.png)
+At heart, the data platform is a data lake, with a number of additional services built on top of it.
+
+
+
+
+---
+<!-- class: default-->
+
+# default
 
 ---
 <!-- class: gaia-->
@@ -47,15 +72,26 @@ class:
 
 ---
 <!-- Speaker Notes -->
-<!-- class: lead -->
+<!-- _class: "" -->
 
 ## AGENDA
 
 1. What is the New Data Platform?
-1. Past
-1. Present
-1. Future
-<!-- Can have multiple on a slide -->
+1. Way of working
+1. How is the CI/CD?
+1. Terraform learnings 
+1. Next steps
+
+<!-- 
+Way of working:
+Design before code -> All RFC includes a POC, sometimes this POC becomes the actual solution
+Didn't find an efficient solution, contribute to the open source.
+Staying open source and contributing to the open source.
+An Ops approach
+
+--
+
+-->
 
 ---
 
@@ -64,9 +100,8 @@ class:
 ## What is the New Data Platform?
 <!-- Can also do a multiline
 comment that will show in notes -->
-C4 Architecture
-
 ![Image](https://picsum.photos/600/400)
+C4 Architecture
 
 ---
 
