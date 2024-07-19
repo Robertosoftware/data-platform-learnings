@@ -34,7 +34,8 @@
 				"bierner.markdown-mermaid",
 				"github.vscode-pull-request-github",
 				"github-actions.github-actions",
-				"oderwat.indent-rainbow"
+				"oderwat.indent-rainbow",
+				"pomdtr.excalidraw-editor"
 			]
 		},
 		"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && git config --global --add credential.useHttpPath true",

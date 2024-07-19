@@ -1,14 +1,16 @@
 ---
 marp: true
-theme: gaia
+theme: custom-gaia
 class:
   - lead
   - invert
-footer: Data Team TBAuctions
+paginate: true
 # footer: 'https://example.com' #9CB080
 ---
-<!-- class: lead invert -->
+<!-- _class: lead invert -->
 <!-- _backgroundColor:  #9CB080 -->
+<!-- _footer: Data Team @ TBAuctions -->
+
 # Learnings of a New Data Platform
 July 2024
 ![bg right](./img/tbauctions-logo.png)
@@ -30,146 +32,169 @@ July 2024
 
 ---
 
-<!-- class: lead -->
+<!-- _class: lead -->
 
 ## What is the New Data Platform?
 <!-- Can also do a multiline
 comment that will show in notes -->
-![width:600 height:400](./img/data-platform-system_context.png)
-At heart, the data platform is a data lake, with a number of additional services built on top of it.
 
+![width:800 height:400](./img/data-platform-system_context.png)
+At heart, the [data platform](https://www.notion.so/tbauctions/Data-Platform-Architecture-bfab95f56f394cc4b7b9e9d0ef7eafd7?pvs=4#eef2c1caeca04e1ab7b98dcce24079f7) is a data lake, with a number of additional services built on top of it.
+<!-- _footer: C4 Architecture - System View -->
+---
+<!-- _class: lead-->
 
+## Environment Context
+![width:800 height:550](./img/data-platform-environment_context.png)
 
+<!-- _footer: C4 Architecture - System View -->
 
 ---
-<!-- class: default-->
+<!-- _class: lead-->
 
-# default
+## Production Environment
+![width:800 height:550](./img/data-platform-container_context_data_prod.png)
 
----
-<!-- class: gaia-->
-
-# gaia
+<!-- _footer: C4 Architecture - Container View -->
 
 ---
-<!-- class: lead invert -->
+<!-- _class: lead-->
 
-# Lead + invert
+## Transformations Component
+![width:1000 height:550](./img/data-platform-component_transformation.png)
 
----
-
-<!-- class: lead gaia -->
-
-# Lead + gaia
-
+<!-- _footer: C4 Architecture - Component View -->
 
 ---
-
-<!-- class: invert gaia -->
-
-# Invert + gaia
+<!-- _class: lead invert -->
 
 
----
-<!-- Speaker Notes -->
-<!-- _class: "" -->
 
-## AGENDA
+## Way of working
+<!-- _backgroundColor: #260F1C -->
 
-1. What is the New Data Platform?
-1. Way of working
-1. How is the CI/CD?
-1. Terraform learnings 
-1. Next steps
-
-<!-- 
-Way of working:
-Design before code -> All RFC includes a POC, sometimes this POC becomes the actual solution
-Didn't find an efficient solution, contribute to the open source.
-Staying open source and contributing to the open source.
-An Ops approach
-
---
-
--->
+>1. Make RFCs and ADR
+>1. Hiding is harmful, be transparent
+>1. Share knowledge constantly, avoid silos
+>1. Have a culture that involves feedback loops - PR reviews, code reviews, retros, request for comments (RFCs)
+>
+> — *[Data Engineering Team](https://www.notion.so/tbauctions/Engineering-ac362ef5bd78478f9c9f728698b1a3b6?pvs=4)*
 
 ---
 
-<!-- class: lead -->
+<!-- _class: default -->
 
-## What is the New Data Platform?
+# RFC & ADRs
+![width:1100 height:400](./img/data-platform-learnings_slides_excalidraw_rfc_adr.png)
+*Design before coding (doesn't need to be a long tedious task)*
+
+
+---
+
+<!-- _class: invert -->
+<!-- _backgroundColor: #260F1C -->
+<!-- _footer: Way of Working -->
+
+# Share knowledge
+
+- Documentation (which is easy to find)
+  - Wiki
+  - Readme.md
+  - Captain Logs
+  - Operations manual
+  - PR Template
+
+---
+<!-- _class: lead -->
+
+## How is the CI/CD?
+
+
+<table>
+<thead>
+<tr><th >Pre-commit</th><th >CI</th><th colspan="2">CD</th></tr>
+</thead>
+<thead >
+<tr><th class="second-header">Hooks</th><th class="second-header">Integration</th><th class="second-header">Planning</th><th class="second-header">Deployment</th></tr>
+</thead>
+<tbody>
+<tr><td>Trailing Whitespace</td><td>Tfm Fmt</td><td> Remote Backend </td><td> Copy tfplan </td></tr>
+<tr><td>End of File Fixer</td><td>Tfm Validate</td><td> lockBehavior  </td><td> Tfm Apply </td></tr>
+<tr><td>Terraform Docs</td><td><del> Tfsec </del> Trivy </td><td> Tfm Plan</td><td>  </td></tr>
+<tr><td>Terraform Fmt</td><td> </td><td> PlanHasChanges </td><td>  </td></tr>
+<tr><td>Terraform Validate</td><td> </td><td> Env check </td><td>  </td></tr>
+<tr><td><del> Tfsec </del>  Trivy </td><td> </td><td> </td><td>  </td></tr>
+</tbody>
+</table>
+
+<!-- _footer: CI/CD Infrastructure -->
+
+---
+
+<!-- _class: lead -->
+
+## Terraform Apply Sequence
+
+![width:1000 height:400](./img/data-platform-terraform-apply.png)
+<!-- _footer: CI/CD Infrastructure -->
+
+
+---
+
+
+
+<!-- class: default -->
+
+## Monorepo vs Multi Repo
+
 <!-- Can also do a multiline
 comment that will show in notes -->
+<p align="center" >
+  <img width="600" height="460" src="image.png" />
+</p>
+Keep it simple
+
+---
+
+<!-- class: invert  -->
+<!-- _backgroundColor: #260F1C -->
+
+## Terraform Learnings
+1. Use map variables to configure resource dependencies.
+
 ![Image](https://picsum.photos/600/400)
-C4 Architecture
+
 
 ---
 
-## Past
+<!-- class: invert  -->
+<!-- _backgroundColor: #260F1C -->
 
-> We have a d
+## Terraform Learnings
+1. Things can get very complex
 
----
-
-## Slide 4
-
-| Column 1 | Column 2 |
-| -------- | -------- |
-| Item 1   | Item 2   |
-| Item 3   | Item 4   |
+![Image](https://picsum.photos/600/400)
 
 ---
 
-![bg opacity](https://picsum.photos/800/600?image=53)
-## Slide 5
 
-<div class="columns">
-<div>
+<!-- class: invert  -->
+<!-- _backgroundColor: #260F1C -->
 
-## Left
+## Terraform Learnings
+2. Refactoring code is painful
 
-- 1
-- 2
-
-</div>
-<div>
-
-## Right
-
-- 3
-- 4
-
-</div>
-</div>
+![Image](https://picsum.photos/600/400)
 
 ---
 
-## Slide 6
 
-<i class="fa-brands fa-twitter"></i> Twitter:
-<i class="fa-brands fa-mastodon"></i> Mastodon:
-<i class="fa-brands fa-linkedin"></i> LinkedIn:
-<i class="fa fa-window-maximize"></i> Blog:
-<i class="fa-brands fa-github"></i> GitHub:
+<!-- class: invert  -->
+<!-- _backgroundColor: #260F1C -->
 
----
+## Next Steps
+1. Quality Code
 
-# <!--fit--> Large Text
+![Image](https://picsum.photos/600/400)
 
----
 
-<!-- Needed for mermaid, can be anywhere in file except frontmatter -->
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: true });
-</script>
-
-# Mermaid
-
-<div class="mermaid">
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-</div>
