@@ -5,7 +5,7 @@ class:
   - lead
   - invert
 paginate: true
-transition: slide-up
+transition: dissolve
 style: |
   @keyframes marp-transition-dissolve {
     from {
@@ -151,13 +151,11 @@ At heart, the [data platform](https://www.notion.so/tbauctions/Data-Platform-Arc
 
 ---
 
-<!-- class: default -->
+<!-- class: lead -->
 ## Monorepo vs Multi Repo
 <!-- Can also do a multiline
 comment that will show in notes -->
-<p align="center" >
-  <img width="600" height="400" src="image.png" />
-</p>
+![width:600 height:400](./img/mono_vs_multi.png)
 
 *Keep it simple!*
 
