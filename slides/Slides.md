@@ -194,8 +194,7 @@ comment that will show in notes -->
 ---
 
 
-<!-- class: invert  -->
-<!-- _backgroundColor: #260F1C -->
+<!-- class: default  -->
 
 ## Next Steps
 1. Quality Code
