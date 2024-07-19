@@ -155,7 +155,7 @@ At heart, the [data platform](https://www.notion.so/tbauctions/Data-Platform-Arc
 ## Monorepo vs Multi Repo
 <!-- Can also do a multiline
 comment that will show in notes -->
-![width:600 height:400](./img/mono_vs_multi.png)
+![width:700 height:450](./img/mono_vs_multi.png)
 
 *Keep it simple!*
 
