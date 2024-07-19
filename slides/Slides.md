@@ -7,13 +7,13 @@ class:
 paginate: true
 transition: slide-up
 style: |
-  @keyframes marp-transition-dissolve {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
+  @keyframes marp-outgoing-transition-slide-up {
+    from { transform: translateY(0%); }
+    to { transform: translateY(-100%); }
+  }
+  @keyframes marp-incoming-transition-slide-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0%); }
   }
 # footer: 'https://example.com' #9CB080
 ---
