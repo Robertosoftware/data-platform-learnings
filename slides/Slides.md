@@ -36,13 +36,13 @@ July 2024
 1. What is the New Data Platform?
 1. Way of working
 1. How is the CI/CD?
-1. Terraform learnings 
+1. Terraform learnings
 1. Next steps
 
 
 ---
 
-<!-- _class: lead -->
+<!-- class: lead -->
 
 ## What is the New Data Platform?
 <!-- Can also do a multiline
@@ -52,7 +52,6 @@ comment that will show in notes -->
 At heart, the [data platform](https://www.notion.so/tbauctions/Data-Platform-Architecture-bfab95f56f394cc4b7b9e9d0ef7eafd7?pvs=4#eef2c1caeca04e1ab7b98dcce24079f7) is a data lake, with a number of additional services built on top of it.
 <!-- _footer: C4 Architecture - System View -->
 ---
-<!-- _class: lead-->
 
 ## Environment Context
 ![width:800 height:550](./img/data-platform-environment_context.png)
@@ -60,7 +59,6 @@ At heart, the [data platform](https://www.notion.so/tbauctions/Data-Platform-Arc
 <!-- _footer: C4 Architecture - System View -->
 
 ---
-<!-- _class: lead-->
 
 ## Production Environment
 ![width:800 height:550](./img/data-platform-container_context_data_prod.png)
@@ -68,7 +66,6 @@ At heart, the [data platform](https://www.notion.so/tbauctions/Data-Platform-Arc
 <!-- _footer: C4 Architecture - Container View -->
 
 ---
-<!-- _class: lead-->
 
 ## Transformations Component
 ![width:1000 height:550](./img/data-platform-component_transformation.png)
@@ -115,7 +112,7 @@ At heart, the [data platform](https://www.notion.so/tbauctions/Data-Platform-Arc
   - PR Template
 
 ---
-<!-- _class: lead -->
+<!-- class: lead -->
 
 ## How is the CI/CD?
 
@@ -139,9 +136,18 @@ At heart, the [data platform](https://www.notion.so/tbauctions/Data-Platform-Arc
 
 <!-- _footer: CI/CD Infrastructure -->
 
+
 ---
 
-<!-- _class: lead -->
+
+## Environment Management
+
+![width:900 height:520](./img/data-platform-terraform_deploy_environments.png)
+<!-- _footer: CI/CD Infrastructure -->
+
+
+---
+
 
 ## Terraform Apply Sequence
 
@@ -149,57 +155,181 @@ At heart, the [data platform](https://www.notion.so/tbauctions/Data-Platform-Arc
 <!-- _footer: CI/CD Infrastructure -->
 
 
+
 ---
 
-<!-- class: lead -->
 ## Monorepo vs Multi Repo
 <!-- Can also do a multiline
 comment that will show in notes -->
 ![width:700 height:450](./img/mono_vs_multi.png)
 
-*Keep it simple!*
+*Keep it simple 👌*
 
 ---
 
 <!-- class: invert  -->
-<!-- _backgroundColor: #260F1C -->
+<!-- backgroundColor: #260F1C -->
 
 ## Terraform Learnings
 1. Use map variables to configure resource dependencies.
 
-![Image](https://picsum.photos/600/400)
-
+```json
+users = {
+  "r.bonillaibarra@tbauctions.com" = {
+    display_name = "Roberto Bonilla",
+    member_of    = ["marketing","intelligent_auctioning"]
+    catalog_name = "r_bonilla"
+  },
+  "b.lucieer@tbauctions.com" = {
+    display_name = "Bas Lucieer",
+    member_of    = ["intelligent_auctioning"]
+  }
+}
+```
 
 ---
 
 <!-- class: invert  -->
-<!-- _backgroundColor: #260F1C -->
 
 ## Terraform Learnings
-1. Things can get very complex
+2. There is a tradeoff of functionality vs complexity
 
-![Image](https://picsum.photos/600/400)
+```py
+locals {
+  # Flatten ensures that this local value is a flat list of objects
+  power_users = flatten([
+    for user_email, user_data in var.users : [
+      for group in user_data.member_of : {
+        email      = user_email
+        group_name = group
+        group_id   = databricks_group.pwu_group[group].id
+        member_id  = databricks_user.pwu[user_email].id
+      }
+    ]
+  ])
+}
+```
 
 ---
 
 
 <!-- class: invert  -->
-<!-- _backgroundColor: #260F1C -->
 
 ## Terraform Learnings
-2. Refactoring code is painful
+3. Refactoring code into modules can be quite painful
 
-![Image](https://picsum.photos/600/400)
+```json
+moved {
+  from = databricks_sql_endpoint.small
+  to   = module.databricks_sql_endpoint["segment_sql_endpoint"].databricks_sql_endpoint.default
+}
+
+moved {
+  from = databricks_permissions.endpoint_usage
+  to   = module.databricks_sql_endpoint["segment_sql_endpoint"].databricks_permissions.endpoint_usage
+}
+```
 
 ---
 
 
+<!-- class: invert  -->
+
+## Terraform Learnings
+4. Protect stateful resources
+
+```json
+resource "azurerm_databricks_workspace" "databricks" {
+  name                        = var.databricks_workspace_name
+  resource_group_name         = var.resource_group_name
+  location                    = var.location.full
+  sku                         = "premium"
+  managed_resource_group_name = local.managed_resource_group_name
+  tags                        = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+```
+
+---
+
+
+<!-- class: invert  -->
+
+## Terraform Learnings
+5. There is no one source of truth, it always depends.
+<p align="center" width="60%">
+    <img width="30%" src="https://media.licdn.com/dms/image/C5612AQE8OW_lKZt7xg/article-cover_image-shrink_720_1280/0/1532285055837?e=1727308800&v=beta&t=na3NBzG7lcIMUbPQl-rOmVwTH3WqF1X0xPpWzQt1SDE">
+</p>
+
+---
+<!-- _backgroundColor:  #9CB080 -->
+<!-- class: invert  -->
+
+## Data Learnings
+6. Staying open source, maintaining custom solutions can be painful
+
+![width:800 height:400](image.png)
+
+---
+
+<!-- backgroundColor: custom-gaia -->
 <!-- class: default  -->
 
 ## Next Steps
-1. Quality Code
+1. Building a Power Users Community
 
-![Image](https://picsum.photos/600/400)
+<p align="center" width="180%">
+    <img width="70%" src="https://cdn.sanity.io/images/pghoxh0e/production/008ca4c1cd223b070b2f6da3a954d9a866329614-1920x1005.png">
+    <div align="center" class="caption">Reforge</div>
+</p>
+
+---
+
+## Next Steps
+2. CDC for efficient tracking of incremental changes and near real-time synchronization.
+
+<p align="center" width="180%">
+    <img width="60%" src="https://cdn.prod.website-files.com/6130fa1501794e37c21867cf/6425d956a131bb1c128d244c_Group%2016673.png">
+    <div align="center" class="caption">Fivetran</div>
+</p>
+
+---
+
+
+## Next Steps
+3. With the Batch layer in place, our next focus will be on developing the Speed layer and the Serving layer.
+
+<p align="center" width="100%">
+    <img width="57%" src="https://www.databricks.com/sites/default/files/inline-images/hadoop-architecture.png?v=1673967407">
+    <div align="center" class="caption">Databricks</div>
+</p>
+
+---
+
+
+## Next Steps
+4. Improve quality code with Sonar Cloud
+
+<p align="center" width="160%">
+<img width="62%" src="https://media.licdn.com/dms/image/D5612AQE60RbPztWrqA/article-cover_image-shrink_720_1280/0/1690265830089?e=1727308800&v=beta&t=Bu6hxRBQqNpFk09xhbIyjXmi3Sj1P4ZucUKp-57sGW4">
+    <div align="center" class="caption">SonarSource </div>
+</p>
+
+---
+
+
+## Sources
+
+1. [Google's Terraform Best Practices](https://cloud.google.com/docs/terraform/best-practices/general-style-structure#custom-scripts)
+
+2. [C4 Architecture](https://c4model.com/)
+
+3. [Spotify - When Should I Write an Architecture Decision Record](https://engineering.atspotify.com/2020/04/when-should-i-write-an-architecture-decision-record/)
+
+4. [Reforge - The Power Users Trap](https://www.reforge.com/blog/the-power-user-trap)
 
 ---
 
@@ -207,6 +337,7 @@ comment that will show in notes -->
 <!-- _backgroundColor:  #9CB080 -->
 <!-- _footer: Data Team @ TBAuctions -->
 
+
 # Questions and Feedback
 
-![bg right](https://picsum.photos/1000/1000)
+![bg right](./img/hammer-down.jpeg)

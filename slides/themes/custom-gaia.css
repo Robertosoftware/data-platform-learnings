@@ -9,3 +9,9 @@ section {
 }
 
 th.second-header {background-color: #7393B3	;}
+
+div {
+  text-align: center;
+  font-size: 0.4em;
+  margin-top: 3px;
+}
